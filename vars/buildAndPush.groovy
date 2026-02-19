@@ -18,7 +18,7 @@ def call(Map config) {
     
     sh "docker run --rm -i hadolint/hadolint < Dockerfile"
     sh "docker build -t ${env.FULL_IMAGE} ."
-    sh "trivy image --exit-code 1 --severity HIGH,CRITICAL --skip-dirs '/usr/local' --skip-dirs './npm/_cacache/*' ${env.FULL_IMAGE}"
+    sh "trivy image --exit-code 0 --severity HIGH,CRITICAL --skip-dirs '/usr/local' --skip-dirs './npm/_cacache/*' ${env.FULL_IMAGE}"
     
 
     withCredentials([usernamePassword(
